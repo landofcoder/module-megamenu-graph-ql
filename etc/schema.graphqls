@@ -1,0 +1,78 @@
+type StoreConfig {
+    megamenu: MegamenuConfiguration @resolver(class: "\\Lof\\MegamenuGraphQl\\Model\\Resolver\\MegamenuConfiguration") @doc(description: "Megamenu configuration.")
+}
+type MegamenuConfiguration {
+    enabled: Boolean! @doc(description: "Indicates whether the Ves_Megamenu module is enabled.")
+}
+type Query {
+    
+    megamenu (
+        id: Int! @doc(description: "Query by id."),
+        storeId: String @doc(description: "Query by storeId.")
+    ) : Megamenu @resolver( class: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenu") @doc(description: "Query by Get megamenu by ID.") @cache( cacheIdentity: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenu\\Identity")
+    megamenus (
+        filters: MegamenuFilterInput @doc(description: "Identifies which brand filter inputs to search for and return.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        sort: MegamenuSortInput @doc(description: "Specifies which attributes to sort on, and whether to return the results in ascending or descending order.")
+    ) : Megamenus @resolver( class: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenus") @doc(description: "Query by Specifies which attributes to sort on, and whether to return the results in ascending or descending order..") @cache( cacheIdentity: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenus\\Identity")
+}
+
+input MegamenuFilterInput  @doc(description: "MegamenuFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for.")
+{
+    entity_id: FilterEqualTypeInput @deprecated(reason: "Filter Slider entity_id")
+    resource_type: FilterEqualTypeInput @deprecated(reason: "Filter Slider resource_type")
+    is_enabled: FilterEqualTypeInput @deprecated(reason: "Filter Slider is_enabled")
+    store_id: FilterMatchTypeInput @deprecated(reason: "Filter Slider store_id")
+    is_featured: FilterEqualTypeInput @deprecated(reason: "Filter Slider is_featured")
+    title: FilterMatchTypeInput @deprecated(reason: "Filter Slider title")
+    sub_title: FilterMatchTypeInput @deprecated(reason: "Filter Slider sub_title")
+    type: FilterEqualTypeInput @deprecated(reason: "Filter Slider type")
+    pro_cat_id: FilterMatchTypeInput @deprecated(reason: "Filter Slider pro_cat_id")
+    created_at: FilterMatchTypeInput @doc(description: "Filter Timestamp indicating when the slider was created")
+    updated_at: FilterMatchTypeInput @doc(description: "Filter Timestamp indicating when the slider was updated")
+}
+
+input MegamenuSortInput @doc(description: "MegamenuSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort sliders using searchable attributes with enabled 'Use in Filter Options' option")
+{
+    created_at: SortEnum @doc(description: "Sort by the created_at (default).")
+    updated_at: SortEnum @doc(description: "Sort by the updated_at assigned to each slider.")
+    is_featured: SortEnum @doc(description: "Sort by the is_featured assigned to each slider.")
+    is_enabled: SortEnum @doc(description: "Sort by the is_enabled assigned to each slider.")
+    title: SortEnum @doc(description: "Sort by the title assigned to each slider.")
+    type: SortEnum @doc(description: "Sort by the type assigned to each slider.")
+    resource_type: SortEnum @doc(description: "Sort by the resource_type assigned to each slider.")
+    entity_id: SortEnum @doc(description: "Sort by the entity_id.")
+}
+
+type Megamenu {
+    id  : String  @doc(description: "Query by id.") 
+    title  : String  @doc(description: "Query by title.") 
+    sub_title  : String  @doc(description: "Query by sub_title.") 
+    resource_path  : String  @doc(description: "Query by resource_path.") 
+    resource_type  : String  @doc(description: "Query by resource_type.") 
+    alt_text  : String  @doc(description: "Query by alt_text.") 
+    link  : String  @doc(description: "Query by link.") 
+    is_enabled  : String  @doc(description: "Query by is_enabled.") 
+    sort_order  : String  @doc(description: "Query by sort_order.")
+    is_featured  : String  @doc(description: "Query by is_featured.")
+    pro_cat_id  : String  @doc(description: "Query by pro_cat_id.")
+    type  : String  @doc(description: "Query by type.")
+    store_id: String  @doc(description: "Query by store_id.")
+}
+
+type Megamenus @doc(description: "The megamenus object is the top-level object returned in a slider search.") {
+    items: [Megamenu] @doc(description: "An array of images that match the specified search criteria.")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    total_count: Int @doc(description: "The number of images that are marked as visible. By default, in complex images, parent images are visible, but their child menu are not.")
+    sort_fields: SortFields @doc(description: "An object that includes the default sort field and all available sort fields.") @resolver(class: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenus\\SortFields")
+}
+
+type SortField {
+    value: String @doc(description: "Attribute code of sort field.")
+    label: String @doc(description: "Label of sort field.")
+}
+type SortFields @doc(description: "SortFields contains a default value for sort fields and all available sort fields.") {
+    default: String @doc(description: "Default value of sort fields.")
+    options: [SortField] @doc(description: "Available sort fields.")
+}
