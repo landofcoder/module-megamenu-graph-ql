@@ -50,7 +50,7 @@ type Megamenu {
     width  : String  @doc(description: "Query by width.")
     html  : String  @doc(description: "Query by html.")
     structure : String @doc(description: "Query by structure.")
-    scrolltofixed  : int  @doc(description: "Query by scrolltofixed.")
+    scrolltofixed  : Int  @doc(description: "Query by scrolltofixed.")
     mobile_menu_alias  : String  @doc(description: "Query by mobile_menu_alias.")
     customer_groups: [Int] @doc(description: "Query by customer groups.")
     stores: [Int] @doc(description: "Query by stores.")
