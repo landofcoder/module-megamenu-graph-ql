@@ -1,4 +1,11 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference type="Lof\MegamenuGraphQl\Model\Resolver\Megamenu\Query\Search" for="Lof\MegamenuGraphQl\Model\Resolver\Megamenu\Query\MegamenuQueryInterface"/>
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="megamenus" xsi:type="object">\Lof\MegamenuGraphQl\Model\Resolver\FilterArgumentMegamenu</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

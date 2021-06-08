@@ -13,29 +13,21 @@ type Query {
 
 input MegamenuFilterInput  @doc(description: "MegamenuFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for.")
 {
-    entity_id: FilterEqualTypeInput @deprecated(reason: "Filter Slider entity_id")
-    resource_type: FilterEqualTypeInput @deprecated(reason: "Filter Slider resource_type")
-    is_enabled: FilterEqualTypeInput @deprecated(reason: "Filter Slider is_enabled")
+    menu_id: FilterEqualTypeInput @deprecated(reason: "Filter Slider entity_id")
+    alias: FilterEqualTypeInput @deprecated(reason: "Filter Slider alias")
+    status: FilterEqualTypeInput @deprecated(reason: "Filter Slider is_enabled")
     store_id: FilterMatchTypeInput @deprecated(reason: "Filter Slider store_id")
-    is_featured: FilterEqualTypeInput @deprecated(reason: "Filter Slider is_featured")
-    title: FilterMatchTypeInput @deprecated(reason: "Filter Slider title")
-    sub_title: FilterMatchTypeInput @deprecated(reason: "Filter Slider sub_title")
-    type: FilterEqualTypeInput @deprecated(reason: "Filter Slider type")
-    pro_cat_id: FilterMatchTypeInput @deprecated(reason: "Filter Slider pro_cat_id")
-    created_at: FilterMatchTypeInput @doc(description: "Filter Timestamp indicating when the slider was created")
-    updated_at: FilterMatchTypeInput @doc(description: "Filter Timestamp indicating when the slider was updated")
+    name: FilterMatchTypeInput @deprecated(reason: "Filter Slider title")
 }
 
 input MegamenuSortInput @doc(description: "MegamenuSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort sliders using searchable attributes with enabled 'Use in Filter Options' option")
 {
-    created_at: SortEnum @doc(description: "Sort by the created_at (default).")
-    updated_at: SortEnum @doc(description: "Sort by the updated_at assigned to each slider.")
-    is_featured: SortEnum @doc(description: "Sort by the is_featured assigned to each slider.")
-    is_enabled: SortEnum @doc(description: "Sort by the is_enabled assigned to each slider.")
-    title: SortEnum @doc(description: "Sort by the title assigned to each slider.")
-    type: SortEnum @doc(description: "Sort by the type assigned to each slider.")
-    resource_type: SortEnum @doc(description: "Sort by the resource_type assigned to each slider.")
-    entity_id: SortEnum @doc(description: "Sort by the entity_id.")
+    creation_time: SortEnum @doc(description: "Sort by the creation_time")
+    update_time: SortEnum @doc(description: "Sort by the update_time assigned to each menu.")
+    status: SortEnum @doc(description: "Sort by the status assigned to each menu.")
+    name: SortEnum @doc(description: "Sort by the name assigned to each menu.")
+    alias: SortEnum @doc(description: "Sort by the alias assigned to each menu.")
+    menu_id: SortEnum @doc(description: "Sort by the menu_id (default).")
 }
 
 type Megamenu {
