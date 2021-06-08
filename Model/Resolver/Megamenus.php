@@ -14,18 +14,18 @@ use Magento\Framework\GraphQl\Exception\GraphQlNoSuchEntityException;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 
-class Megamenu implements ResolverInterface
+class Megamenus implements ResolverInterface
 {
 
-    private $dataProvider;
+    private $megamenuDataProvider;
 
     /**
-     * @param DataProvider\Megamenu $dataProvider
+     * @param DataProvider\Megamenus $lofBannerImagesRepository
      */
     public function __construct(
-        DataProvider\Megamenu $dataProvider
+        DataProvider\Megamenus $megamenuDataProvider
     ) {
-        $this->dataProvider = $dataProvider;
+        $this->megamenuDataProvider = $megamenuDataProvider;
     }
 
     /**
@@ -38,23 +38,11 @@ class Megamenu implements ResolverInterface
         array $value = null,
         array $args = null
     ) {
-        $this->validateArgs($args);
-        $alias = $args["alias"];
-        $storeId = isset($args["storeId"])?$args["storeId"]:null;
-        $megamenuData = $this->dataProvider->getMegamenu($alias, $storeId);
-        return $megamenuData;
-    }
-
-    /**
-     * @param array $args
-     *
-     * @throws GraphQlInputException
-     */
-    public function validateArgs($args)
-    {
-        if (!isset($args['alias']) || (isset($args['alias']) && !$args['alias'])) {
-            throw new GraphQlInputException(__('Required parameter "alias" is missing'));
-        }
+        $megamenusData = $this->megamenuDataProvider->getMegamenus(
+            $args, 
+            $context
+        );
+        return $megamenusData;
     }
 }
 

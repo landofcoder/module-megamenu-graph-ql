@@ -1,13 +1,6 @@
-type StoreConfig {
-    megamenu: MegamenuConfiguration @resolver(class: "\\Lof\\MegamenuGraphQl\\Model\\Resolver\\MegamenuConfiguration") @doc(description: "Megamenu configuration.")
-}
-type MegamenuConfiguration {
-    enabled: Boolean! @doc(description: "Indicates whether the Ves_Megamenu module is enabled.")
-}
 type Query {
-    
     megamenu (
-        id: Int! @doc(description: "Query by id."),
+        alias: String! @doc(description: "Query by menu alias."),
         storeId: String @doc(description: "Query by storeId.")
     ) : Megamenu @resolver( class: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenu") @doc(description: "Query by Get megamenu by ID.") @cache( cacheIdentity: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenu\\Identity")
     megamenus (
@@ -46,19 +39,84 @@ input MegamenuSortInput @doc(description: "MegamenuSortInput specifies the attri
 }
 
 type Megamenu {
-    id  : String  @doc(description: "Query by id.") 
-    title  : String  @doc(description: "Query by title.") 
-    sub_title  : String  @doc(description: "Query by sub_title.") 
-    resource_path  : String  @doc(description: "Query by resource_path.") 
-    resource_type  : String  @doc(description: "Query by resource_type.") 
-    alt_text  : String  @doc(description: "Query by alt_text.") 
-    link  : String  @doc(description: "Query by link.") 
-    is_enabled  : String  @doc(description: "Query by is_enabled.") 
-    sort_order  : String  @doc(description: "Query by sort_order.")
-    is_featured  : String  @doc(description: "Query by is_featured.")
-    pro_cat_id  : String  @doc(description: "Query by pro_cat_id.")
-    type  : String  @doc(description: "Query by type.")
-    store_id: String  @doc(description: "Query by store_id.")
+    menu_id  : String  @doc(description: "Query by menu_id.") 
+    name  : String  @doc(description: "Query by name.") 
+    alias  : String  @doc(description: "Query by alias.") 
+    disable_bellow  : Int  @doc(description: "Query by 	disable_bellow.") 
+    status  : Int  @doc(description: "Query by status.") 
+    design  : String  @doc(description: "Query by design.") 
+    event  : String  @doc(description: "Query by event.") 
+    classes  : String  @doc(description: "Query by classes.") 
+    width  : String  @doc(description: "Query by width.")
+    html  : String  @doc(description: "Query by html.")
+    structure : String @doc(description: "Query by structure.")
+    scrolltofixed  : int  @doc(description: "Query by scrolltofixed.")
+    mobile_menu_alias  : String  @doc(description: "Query by mobile_menu_alias.")
+    customer_groups: [Int] @doc(description: "Query by customer groups.")
+    stores: [Int] @doc(description: "Query by stores.")
+    menu_items: [MegamenuItem] @doc(description: "Query by MegamenuItem.")
+}
+
+type MegamenuItem {
+    id: Int
+    item_id: String
+    name: String
+    show_name: Int
+    classes: String
+    child_col: String
+    sub_width: String
+    align: String
+    icon_position: String
+    icon_classes: String
+    is_group: Int
+    status: Int
+    disable_bellow: Int
+    show_icon: Int
+    icon: String
+    show_header: Int
+    header_html: String
+    show_left_sidebar: Int
+    left_sidebar_width: String
+    menu_id: Int
+    left_sidebar_html: String
+    show_content: Int
+    content_width: String
+    content_type: String
+    link_type: String
+    link: String
+    category: String
+    target: String
+    cotnent_html: String
+    show_right_sidebar: Int
+    right_sidebar_width: String
+    right_sidebar_html: String
+    show_footer: Int
+    footer_html: String
+    color: String
+    hover_color: String
+    bg_color: String
+    bg_hover_color: String
+    inline_css: String
+    tab_position: String
+    before_html: String
+    after_html: String
+    caret: String
+    hover_caret: String
+    sub_height: String
+    hover_icon: String
+    dropdown_bgcolor: String
+    dropdown_bgimage: String
+    dropdown_bgimagerepeat: String
+    dropdown_bgpositionx: String
+    dropdown_bgpositiony: String
+    dropdown_inlinecss: String
+    parentcat: String
+    animation_in: String
+    animation_time: String
+    child_col_type: String
+    submenu_sorttype: String
+    isgroup_level: String
+    menu_items: [MegamenuItem] @doc(description: "Query by MegamenuItem.")
 }
 
 type Megamenus @doc(description: "The megamenus object is the top-level object returned in a slider search.") {
