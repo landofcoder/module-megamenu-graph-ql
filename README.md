@@ -35,3 +35,95 @@ magento 2 megamenu graphql extension
  - enable the module by running `php bin/magento module:enable Lof_MegamenuGraphQl`
  - apply database updates by running `php bin/magento setup:upgrade`\*
  - Flush the cache by running `php bin/magento cache:flush`
+
+### Query
+
+1. Get menu profile with menu alias
+
+Flagment:
+
+```
+fragment MenuNode on MegamenuItemNode {
+    name
+    show_name
+    classes
+    child_col
+    sub_width
+    align
+    icon_position
+    icon_classes
+    is_group
+    status
+    disable_bellow
+    show_icon
+    icon
+    show_header
+    header_html
+    show_left_sidebar
+    left_sidebar_width
+    menu_id
+    left_sidebar_html
+    show_content
+    content_width
+    content_type
+    link_type
+    link
+    category
+    target
+    cotnent_html
+    show_right_sidebar
+    right_sidebar_width
+    right_sidebar_html
+    show_footer
+    footer_html
+    color
+    hover_color
+    bg_color
+    bg_hover_color
+    inline_css
+    tab_position
+    before_html
+    after_html
+    caret
+    hover_caret
+    sub_height
+    hover_icon
+    dropdown_bgcolor
+    dropdown_bgimage
+    dropdown_bgimagerepeat
+    dropdown_bgpositionx
+    dropdown_bgpositiony
+    dropdown_inlinecss
+    parentcat
+    animation_in
+    animation_time
+    child_col_type
+    submenu_sorttype
+    isgroup_level
+}
+```
+
+Query (get 3 levels of menu item node) for menu profile alias ``top-menu``:
+
+```
+{
+  megamenu (alias: "top-menu") {
+    name
+    alias
+    disable_bellow
+    event
+    classes
+    width
+    disable_iblocks
+    nodes {
+        ...MenuNode
+        child_nodes {
+            ...MenuNode
+            child_nodes {
+                ...MenuNode
+            }
+        }
+    }
+  }
+}
+```
