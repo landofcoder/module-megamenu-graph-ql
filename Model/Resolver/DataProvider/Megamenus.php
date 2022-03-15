@@ -73,16 +73,9 @@ class Megamenus
 
         $searchResult = $this->repository->getList( $searchCriteria );
         $totalPages = $args['pageSize'] ? ((int)ceil($searchResult->getTotalCount() / $args['pageSize'])) : 0;
-        $resultItems = $searchResult->getItems();
-        $items = [];
-        if($resultItems){
-            foreach($resultItems as $_item){
-                $items[] = $_item->__toArray();
-            }
-        }
         return [
             'total_count' => $searchResult->getTotalCount(),
-            'items'       => $items,
+            'items'       => $searchResult->getItems(),
             'page_info' => [
                 'page_size' => $args['pageSize'],
                 'current_page' => $args['currentPage'],
