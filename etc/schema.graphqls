@@ -31,14 +31,14 @@ input MegamenuSortInput @doc(description: "MegamenuSortInput specifies the attri
 }
 
 type Megamenu {
-    menu_id  : String  @doc(description: "Query by menu_id.") 
-    name  : String  @doc(description: "Query by name.") 
-    alias  : String  @doc(description: "Query by alias.") 
-    disable_bellow  : Int  @doc(description: "Query by 	disable_bellow.") 
-    status  : Int  @doc(description: "Query by status.") 
-    design  : String  @doc(description: "Query by design.") 
-    event  : String  @doc(description: "Query by event.") 
-    classes  : String  @doc(description: "Query by classes.") 
+    menu_id  : String  @doc(description: "Query by menu_id.")
+    name  : String  @doc(description: "Query by name.")
+    alias  : String  @doc(description: "Query by alias.")
+    disable_bellow  : Int  @doc(description: "Query by 	disable_bellow.")
+    status  : Int  @doc(description: "Query by status.")
+    design  : String  @doc(description: "Query by design.")
+    event  : String  @doc(description: "Query by event.")
+    classes  : String  @doc(description: "Query by classes.")
     width  : String  @doc(description: "Query by width.")
     html  : String  @doc(description: "Query by html.")
     params : String  @doc(description: "Query by params.")
@@ -50,10 +50,10 @@ type Megamenu {
     disable_iblocks  : Int  @doc(description: "Query by 	disable_iblocks.")
     customer_groups: [Int] @doc(description: "Query by customer groups.")
     stores: [Int] @doc(description: "Query by stores.")
-    menu_items: [MegamenuItem] @doc(description: "Query by MegamenuItem.")
+    nodes: [MegamenuItemNode] @doc(description: "Query by MegamenuItemNode.")
 }
 
-type MegamenuItem {
+type MegamenuItemNode {
     id: Int
     item_id: String
     name: String
@@ -112,7 +112,7 @@ type MegamenuItem {
     child_col_type: String
     submenu_sorttype: String
     isgroup_level: String
-    menu_items: [MegamenuItem] @doc(description: "Query by MegamenuItem.")
+    child_nodes: [MegamenuItemNode] @doc(description: "Query by MegamenuItemNode.")
 }
 
 type Megamenus @doc(description: "The megamenus object is the top-level object returned in a slider search.") {
