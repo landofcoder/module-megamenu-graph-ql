@@ -1,7 +1,7 @@
 type Query {
     megamenu (
-        alias: String! @doc(description: "Query by menu alias."),
-        storeId: String @doc(description: "Query by storeId.")
+        alias: String! = "top-menu" @doc(description: "Query by menu alias. Default menu profile alias = top-menu")
+        isMobile: Int = 0 @doc(description: "Query mobile menu profile if exists. Default value = 0")
     ) : Megamenu @resolver( class: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenu") @doc(description: "Query by Get megamenu by ID.") @cache( cacheIdentity: "Lof\\MegamenuGraphQl\\Model\\Resolver\\Megamenu\\Identity")
     megamenus (
         filters: MegamenuFilterInput @doc(description: "Identifies which brand filter inputs to search for and return.")
