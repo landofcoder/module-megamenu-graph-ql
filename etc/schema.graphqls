@@ -1,3 +1,11 @@
+
+type StoreConfig {
+
+    megamenu_general_enabled  : String  @doc(description: "Query by Megamenu Enabled/Disable Option.")
+    megamenu_general_menu_alias  : String  @doc(description: "Query by Get Default PWA Megamenu Profile Alias.")
+    megamenu_general_custom_css  : String  @doc(description: "Query by Get Custom Css code on Megamenu Setting.")
+}
+
 type Query {
     megamenu (
         alias: String! = "top-menu" @doc(description: "Query by menu alias. Default menu profile alias = top-menu")
