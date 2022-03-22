@@ -82,7 +82,7 @@ type MegamenuItemNode {
     link: String
     category: String
     target: String
-    cotnent_html: String
+    content_html: String
     show_right_sidebar: Int
     right_sidebar_width: String
     right_sidebar_html: String

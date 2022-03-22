@@ -70,7 +70,7 @@ fragment MenuNode on MegamenuItemNode {
     link
     category
     target
-    cotnent_html
+    content_html
     show_right_sidebar
     right_sidebar_width
     right_sidebar_html
