@@ -115,6 +115,9 @@ Query (get 3 levels of menu item node) for menu profile alias ``top-menu``:
     classes
     width
     disable_iblocks
+    desktop_template
+    scrolltofixed
+    mobile_template
     nodes {
         ...MenuNode
         child_nodes {
@@ -125,5 +128,36 @@ Query (get 3 levels of menu item node) for menu profile alias ``top-menu``:
         }
     }
   }
+}
+```
+
+2. Get list available menu profiles
+
+Query:
+
+```
+{
+    megamenus (
+        filters: {}
+        pageSize: 10
+        currentPage: 1
+    ) {
+        items {
+            name
+            alias
+        }
+    }
+}
+```
+
+3. Get Store Config
+
+Query:
+
+```
+storeConfig {
+    megamenu_general_enabled
+    megamenu_general_menu_alias
+    megamenu_general_custom_css
 }
 ```
