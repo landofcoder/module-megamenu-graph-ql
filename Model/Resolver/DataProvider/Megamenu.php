@@ -38,7 +38,7 @@ class Megamenu
      */
     public function getMegamenu($alias, $storeId = null, $customerGroupId = 0, $isMobile = false)
     {
-        $megamenu = $this->repository->execute($alias, $storeId, $customerGroupId, $isMobile);
+        $megamenu = $this->repository->execute($alias, $storeId, (int)$customerGroupId, $isMobile);
         if (!$megamenu) {
             throw new GraphQlInputException(__('Megamenu with alias %! is not exists.', $alias));
         }
