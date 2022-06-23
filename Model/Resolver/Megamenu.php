@@ -60,7 +60,7 @@ class Megamenu implements ResolverInterface
             $customerGroupId = $customer->getGroupId();
         }
         $isMobile = isset($args["isMobile"]) && $args["isMobile"] ? true: false;
-        return $this->dataProvider->getMegamenu($args["alias"], $store->getCode(), $customerGroupId, $isMobile);
+        return $this->dataProvider->getMegamenu($args["alias"], $store->getCode(), (int)$customerGroupId, $isMobile);
     }
 
     /**
